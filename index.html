@@ -49,6 +49,7 @@ a{color:inherit;text-decoration:none}
 .topnav{height:52px;background:#ffffff;border-bottom:1px solid var(--line2);
   display:flex;align-items:center;padding:0 22px;gap:26px;position:sticky;top:0;z-index:30}
 .brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:0.9375rem;letter-spacing:-.01em;color:var(--ink)}
+.pi-brand:before{content:"\e987"}
 .brand .brand-logo{width:22px;height:22px;color:var(--ink)}
 .nav{display:flex;gap:4px;margin:0 auto}
 .nav a{display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:8px;font-size:0.8125rem;color:var(--ink2);transition:.15s}
@@ -740,7 +741,7 @@ canvas{max-width:100%}
 <!-- TOP NAV -->
 <nav class="topnav">
   <button class="nav-toggle" id="navToggle" aria-label="Menu" onclick="toggleNav(event)"><i class="pi pi-bars"></i></button>
-  <a href="#home" class="brand"><svg class="brand-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5 20.5 7 12 11.5 3.5 7Z M3 8.2 11.25 12.6V21.5L3 17Z M21 8.2V17L12.75 21.5V12.6Z"/></svg> Inventory Control</a>
+  <a href="#home" class="brand"><svg class="brand-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg> Inventory Control</a>
   <div class="nav" id="navMenu">
     <a href="#home" data-page="home" onclick="closeNav()"><i class="pi pi-home ic"></i><span class="t">Home</span></a>
     <a href="#inventory" data-page="inventory" onclick="closeNav()"><i class="pi pi-box ic"></i><span class="t">Inventory</span></a>
@@ -769,7 +770,7 @@ canvas{max-width:100%}
 <div class="login-screen" id="loginScreen">
   <div class="login-body">
     <div class="login-stack">
-    <svg class="brand-logo login-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5 20.5 7 12 11.5 3.5 7Z M3 8.2 11.25 12.6V21.5L3 17Z M21 8.2V17L12.75 21.5V12.6Z"/></svg>
+    <svg class="brand-logo login-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
     <div class="login-card">
       <h2>Inventory Control</h2>
       <div class="login-group">
@@ -2350,7 +2351,7 @@ function renderHome(){
   }));
   // OEM IOH: client-owned pieces (IOH warehouses). Dev proposal for Needs attention.
   const oemQ=KPI.rom.q+KPI.distri.q+KPI.oem.q, oemV=KPI.rom.v+KPI.distri.v+KPI.oem.v, activeVal=oemV;
-  const alerts=[...cdpAlerts,{k:'OEM IOH',d:`${fmtInt(oemQ)} client-owned pieces on hand · $${fmtMXN(oemV)} MXN`,tag:'IOH',tc:'neutral',ic:'pi pi-box',go:'inventory'}];
+  const alerts=[...cdpAlerts,{k:'OEM IOH',d:`${fmtInt(oemQ)} client-owned pieces on hand · $${fmtMXN(oemV)} MXN`,tag:'IOH',tc:'neutral',ic:'pi pi-brand',go:'inventory'}];
   const stores=[['ROM-IOH-MX',KPI.rom.v,'var(--rom)'],['Distri-IOH-MX',KPI.distri.v,'var(--distri)'],['ROR IWP',KPI.ror.v,'var(--ror)']];
   const smax=Math.max(...stores.map(s=>s[1]));
   const fk=v=>v>=1e6?'$'+(v/1e6).toFixed(2)+'M':'$'+(v/1e3).toFixed(0)+'K';
